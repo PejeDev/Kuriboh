@@ -51,7 +51,7 @@ Start the server
 
 ### Calculate smallest postive interger not present on an array
 
-```http
+```
   POST /api/smallest
 ```
 
@@ -59,7 +59,7 @@ Start the server
 
 ```json
 {
-  “array”: [1, 3, 6, 4, 1, 2]
+  "array": [1, 3, 6, 4, 1, 2]
 }
 
 ```
@@ -68,7 +68,7 @@ Start the server
 
 ```json
 {
-  “result”: 5
+  "result": 5
 }
 
 ```
@@ -79,7 +79,7 @@ Start the server
 
 ### Get number array calculation stats
 
-```http
+```
   GET /api/stats/${number}
 ```
 
@@ -91,9 +91,9 @@ Start the server
 
 ```json
 {
-  “count”: 40,
-  “total”: 100,
-  “ratio”: 0.4
+  "count": 40,
+  "total": 100,
+  "ratio": 0.4
 }
 
 ```
@@ -106,7 +106,7 @@ Start the server
 
 ### Get server status
 
-```http
+```
   GET /api/health
 ```
 
