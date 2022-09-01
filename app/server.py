@@ -1,11 +1,7 @@
 """Flask Application"""
-from flask import Flask, jsonify
+from flask import Flask
+from app.handlers.routes import configure_routes
 
 app = Flask(__name__)
 
-@app.route('/api/health', methods=['GET'])
-def get_health():
-    """ Health check endpoint. """
-    return jsonify({
-        'status': 'ok'
-    }), 200
+configure_routes(app)
