@@ -2,6 +2,7 @@
 
 [![Uptime](https://status.pejedev.xyz/api/badge/7/uptime/720?label=30&labelSuffix=d)](https://status.pejedev.xyz)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+[![codecov](https://codecov.io/gh/PejeDev/Kuriboh/branch/main/graph/badge.svg?token=7J8VV3SOAW)](https://codecov.io/gh/PejeDev/Kuriboh)
 
 Microservice to get the smallest positive integer not in array and retrieve statistics.
 
