@@ -9,7 +9,7 @@ Microservice to get the smallest positive integer not in array and retrieve stat
 
 **Development:** Docker, Docker-compose, pytest, pylint.
 
-**Server:** Python 3.8, Flask, Gunicorn, MongoDb.
+**Server:** Python 3.9, Flask, Gunicorn, MongoDb.
 
 **Deployment:** Dokku, Github Actions.
 
@@ -59,7 +59,7 @@ Start the server
 
 ```json
 {
-  “array”: [1, 3, 6, 4, 1, 2]
+  "array": [1, 3, 6, 4, 1, 2]
 }
 
 ```
@@ -78,7 +78,7 @@ Start the server
 
 ### Get number array calculation stats
 
-```http
+```
   GET /api/stats/${number}
 ```
 
