@@ -12,7 +12,7 @@ Microservice to get the smallest positive integer not in array and retrieve stat
 
 **Server:** Python 3.9, Flask, Gunicorn, MongoDb.
 
-**Deployment:** Dokku, Github Actions.
+**Deployment:** Dokku, Github Actions, codecov.
 
 ## Features
 
