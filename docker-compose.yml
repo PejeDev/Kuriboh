@@ -13,6 +13,6 @@ services:
      image: mongo:latest
      hostname: test_mongodb
      environment:
-        - MONGO_INITDB_DATABASE=calcs
+        - MONGO_INITDB_DATABASE=kuriboh
         - MONGO_INITDB_ROOT_USERNAME=root
         - MONGO_INITDB_ROOT_PASSWORD=pass
