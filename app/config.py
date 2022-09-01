@@ -1,7 +1,7 @@
 """ Configuration file for the application. """
 import os
 
-config = {
+app_config = {
     "db": {
         "host": os.getenv('DATABASE_HOST', '0.0.0.0'),
         "port": os.getenv('DATABASE_PORT', '27017'),

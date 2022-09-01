@@ -1,1 +1,1 @@
-web: gunicorn run:app --workers=4
+web: gunicorn --bind 0.0.0.0 wsgi:app --workers=4
