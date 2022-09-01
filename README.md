@@ -3,7 +3,7 @@
 [![Uptime](https://status.pejedev.xyz/api/badge/7/uptime/720?label=30&labelSuffix=d)](https://status.pejedev.xyz)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 
-Microservice to calculate smallest postive interger not present on an array and retrieve statistics.
+Microservice to get the smallest positive integer not in array and retrieve statistics.
 
 ## Tech Stack
 
@@ -15,7 +15,7 @@ Microservice to calculate smallest postive interger not present on an array and 
 
 ## Features
 
-- Calculate smallest positive interger not present on an array.
+- Get the smallest positive integer not in array.
 - Get total of unique arrays validated through the API.
 - Get Count of occurrence as a calculation result from a number.
 - Get ratio between the total count of arrays calculated and result occurrence count from a number.
@@ -49,7 +49,7 @@ Start the server
 
 ## API Reference
 
-### Calculate smallest postive interger not present on an array
+### Get the smallest positive integer not in array
 
 ```
   POST /api/smallest
@@ -59,7 +59,7 @@ Start the server
 
 ```json
 {
-  "array": [1, 3, 6, 4, 1, 2]
+  “array”: [1, 3, 6, 4, 1, 2]
 }
 
 ```
@@ -70,16 +70,15 @@ Start the server
 {
   "result": 5
 }
-
 ```
 
-| Property | Type  | Description                                         |
-| :------- | :---- | :-------------------------------------------------- |
-| `result` | `int` | Smallest positive interger not present in an array. |
+| Property | Type  | Description                             |
+| :------- | :---- | :-------------------------------------- |
+| `result` | `int` | Smallest positive integer not in array. |
 
 ### Get number array calculation stats
 
-```
+```http
   GET /api/stats/${number}
 ```
 
@@ -95,7 +94,6 @@ Start the server
   "total": 100,
   "ratio": 0.4
 }
-
 ```
 
 | Property | Type    | Description                                                                                   |
