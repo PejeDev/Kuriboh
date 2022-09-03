@@ -26,6 +26,10 @@ class Database:
             filter=None, projection=None, limit=0, sort=False)
         return list(found)
 
+    def count(self, collection_name):
+        """ Count elements in collection """
+        return self.database[collection_name].count_documents({})
+
     def find_by_property(self, prop, prop_value, collection_name):
         """ Find element by id """
         found = self.database[collection_name].find_one({prop: prop_value})

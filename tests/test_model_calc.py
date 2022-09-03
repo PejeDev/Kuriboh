@@ -6,6 +6,14 @@ from app.models.calc import Calc
 database = Calc("test", "mongodb://localhost",
                 client=mongomock.MongoClient)
 
+def test_get_calcs_count():
+    """ Test the get_calcs_count method. """
+    assert database.get_calcs_count() == 0
+    database.add({"array": [-1, 2],
+                  "result": 1,
+                  "hash": hash(str([-1, 2]))
+                  })
+    assert database.get_calcs_count() == 1
 
 def test_add():
     """ Test the add method. """
