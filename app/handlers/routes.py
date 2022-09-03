@@ -5,11 +5,14 @@ from jsonschema import ValidationError
 
 from app.helpers.calc import get_smallest_positive_integer_not_in_list
 from app.models.calc import Calc
-from app.models.stats import Stats
 from app.config import app_config
+from app.models.stats import Stats
+from app.helpers.stats import get_stats
+from app.factory.validator import Validator
 
-calc = Calc(app_config['db']['uri'], app_config['db']['name'])
 stats = Stats(app_config['db']['uri'], app_config['db']['name'])
+calcs = Calc(app_config['db']['uri'], app_config['db']['name'])
+validator = Validator()
 
 def configure_routes(app):
     """ Configures the routes for the application. """
@@ -41,7 +44,7 @@ def configure_routes(app):
         data = request.get_json()
         calc_hash = hash(str(data))
         result = get_smallest_positive_integer_not_in_list(data['array'])
-        calc.add({
+        calcs.add({
             'array': data['array'],
             'result': result,
             'hash': calc_hash
@@ -51,10 +54,12 @@ def configure_routes(app):
             'result': result
         }), 200
 
-    @app.route('/api/stats', methods=['GET'])
-    def get_stats_route():
+    @app.route('/api/stats/<number>', methods=['GET'])
+    def get_stats_route(number):
         """ Stats endpoint. """
-        return  200
+        validator.validate_type(number, "integer")
+        json = get_stats(calcs, stats, number)
+        return  jsonify(json), 200
 
     @app.errorhandler(400)
     def bad_request(error):

@@ -46,6 +46,13 @@ class Stats():
         else :
             self._add({"total": amount, "successful": 0, "failed": amount})
 
+    def get_stats(self):
+        """ Get stats """
+        stats = self.database.find_first(self.collection_name)
+        if not stats:
+            return {"total": 0, "successful": 0, "failed": 0}
+        return stats
+
     def _add(self, stats):
         """ Add a stat """
         self.validator.validate(stats,

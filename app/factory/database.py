@@ -26,9 +26,9 @@ class Database:
             filter=None, projection=None, limit=0, sort=False)
         return list(found)
 
-    def count(self, collection_name):
+    def count_by_param(self, collection_name, param, value):
         """ Count elements in collection """
-        return self.database[collection_name].count_documents({})
+        return self.database[collection_name].count_documents({param: value})
 
     def find_by_property(self, prop, prop_value, collection_name):
         """ Find element by id """

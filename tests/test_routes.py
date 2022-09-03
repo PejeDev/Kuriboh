@@ -8,7 +8,6 @@ from app.handlers.routes import configure_routes
 
 database = create_mongo_fixture()
 
-
 def test_route_configuration():
     """ Test the route configuration. """
     server = Flask(__name__)

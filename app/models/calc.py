@@ -42,6 +42,6 @@ class Calc():
         """ Delete a calc """
         return self.database.delete(item_id, self.collection_name)
 
-    def get_calcs_count(self):
+    def get_calcs_count_by_result(self, num):
         """ Get the number of calcs """
-        return self.database.count(self.collection_name)
+        return self.database.count_by_param(self.collection_name, "result", num)

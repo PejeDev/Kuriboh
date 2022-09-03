@@ -6,7 +6,6 @@ from app.factory.database import Database
 database = Database("test", "mongodb://localhost",
                     client=mongomock.MongoClient)
 
-
 def test_client():
     """ Test the client property. """
     assert database.client is not None
