@@ -3,7 +3,7 @@ import os
 
 app_config = {
     "db": {
-        "uri": os.getenv('DATABASE_URI', "mongodb://root:pass@0.0.0.0:27017"),
+        "uri": os.getenv('DATABASE_URI', "mongodb://root:pass@test_mongodb:27017"),
         "name": os.getenv('DATABASE_NAME', 'kuriboh'),
     },
     "app": {

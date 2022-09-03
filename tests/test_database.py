@@ -6,6 +6,11 @@ from app.factory.database import Database
 database = Database("test", "mongodb://localhost",
                     client=mongomock.MongoClient)
 
+def test_count_by_param():
+    """ Test the count_by_param method. """
+    database.insert({ "test": "test" }, "test")
+    assert database.count_by_param("test", "test", "test") == 1
+
 def test_client():
     """ Test the client property. """
     assert database.client is not None

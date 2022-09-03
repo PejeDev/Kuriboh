@@ -10,7 +10,7 @@ class Stats():
     def __init__(self, uri, db_name, client= MongoClient):
         self.validator = Validator()
         self.database = Database(uri, db_name, client)
-        self.collection_name = "Stats"
+        self.collection_name = "stats"
 
         self.fields = {
             "total": "integer",

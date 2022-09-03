@@ -1,4 +1,5 @@
 """ Flask routes handler. """
+import hashlib
 from flask import jsonify, request, make_response
 from flask_expects_json import expects_json
 from jsonschema import ValidationError
@@ -7,7 +8,7 @@ from app.helpers.calc import get_smallest_positive_integer_not_in_list
 from app.models.calc import Calc
 from app.config import app_config
 from app.models.stats import Stats
-from app.helpers.stats import get_stats
+from app.helpers.stats import calculate_stats
 from app.factory.validator import Validator
 
 stats = Stats(app_config['db']['uri'], app_config['db']['name'])
@@ -42,7 +43,8 @@ def configure_routes(app):
     def get_smallest_positive_interger_route():
         """ Smallest positive integer not in list endpoint. """
         data = request.get_json()
-        calc_hash = hash(str(data))
+        str2hash = str(data['array'])
+        calc_hash = hashlib.md5(str2hash.encode()).hexdigest()
         result = get_smallest_positive_integer_not_in_list(data['array'])
         calcs.add({
             'array': data['array'],
@@ -58,7 +60,10 @@ def configure_routes(app):
     def get_stats_route(number):
         """ Stats endpoint. """
         validator.validate_type(number, "integer")
-        json = get_stats(calcs, stats, number)
+
+        stats_obj = stats.get_stats()
+        count = calcs.get_calcs_count_by_result(int(number))
+        json = calculate_stats(count, stats_obj)
         return  jsonify(json), 200
 
     @app.errorhandler(400)

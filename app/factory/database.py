@@ -7,7 +7,7 @@ from bson import ObjectId
 class Database:
     """ Database module """
 
-    def __init__(self, uri, db_name, client = MongoClient):
+    def __init__(self, uri, db_name, client=MongoClient):
         """ Constructor """
         self.client = client(uri)
         self.database = self.client[db_name]
@@ -17,7 +17,7 @@ class Database:
         element["created"] = datetime.now()
         element["updated"] = datetime.now()
         inserted = self.database[collection_name].insert_one(
-        element)
+            element)
         return str(inserted.inserted_id)
 
     def find_all(self, collection_name):
@@ -26,9 +26,10 @@ class Database:
             filter=None, projection=None, limit=0, sort=False)
         return list(found)
 
-    def count_by_param(self, collection_name, param, value):
+    def count_by_param(self, collection_name, param, num):
         """ Count elements in collection """
-        return self.database[collection_name].count_documents({param: value})
+        criteria = { param: num }
+        return self.database[collection_name].count_documents(criteria)
 
     def find_by_property(self, prop, prop_value, collection_name):
         """ Find element by id """
@@ -59,5 +60,6 @@ class Database:
 
     def delete(self, item_id, collection_name):
         """ Delete element by id """
-        deleted = self.database[collection_name].delete_one({"_id": ObjectId(item_id)})
+        deleted = self.database[collection_name].delete_one(
+            {"_id": ObjectId(item_id)})
         return bool(deleted.deleted_count)

@@ -44,4 +44,5 @@ class Calc():
 
     def get_calcs_count_by_result(self, num):
         """ Get the number of calcs """
-        return self.database.count_by_param(self.collection_name, "result", num)
+        count = self.database.count_by_param(self.collection_name, "result",  num)
+        return count

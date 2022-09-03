@@ -1,4 +1,5 @@
 """ Test calc model """
+import hashlib
 import mongomock
 
 from app.models.calc import Calc
@@ -9,15 +10,18 @@ database = Calc("test", "mongodb://localhost",
 def test_get_calcs_count_by_result():
     """ Test the get_calcs_count method. """
     assert database.get_calcs_count_by_result(1) == 0
+    str2hash =  str([-1, 2])
+    item_hash = hashlib.md5(str2hash.encode()).hexdigest()
     database.add({"array": [-1, 2],
                   "result": 1,
-                  "hash": hash(str([-1, 2]))
+                  "hash": item_hash
                   })
     assert database.get_calcs_count_by_result(1) == 1
 
 def test_add():
     """ Test the add method. """
-    item_hash = hash(str([1, 2, 3, 4, 5]))
+    str2hash =  str([1, 2, 3, 4, 5])
+    item_hash = hashlib.md5(str2hash.encode()).hexdigest()
     database.add({"array": [1, 2, 3, 4, 5],
                   "result": 6,
                   "hash": item_hash
@@ -27,7 +31,8 @@ def test_add():
 
 def test_find_by_hash():
     """ Test the find_by_hash method. """
-    item_hash = hash(str([1, 2, 3]))
+    str2hash =  str([1, 2, 3])
+    item_hash = hashlib.md5(str2hash.encode()).hexdigest()
     database.add({"array": [1, 2, 3],
                   "result": 4,
                   "hash": item_hash
@@ -36,7 +41,8 @@ def test_find_by_hash():
 
 def test_delete():
     """ Test the delete method. """
-    item_hash = hash(str([1, 2]))
+    str2hash =  str([1, 2])
+    item_hash = hashlib.md5(str2hash.encode()).hexdigest()
     database.add({"array": [1, 2],
                   "result": 3,
                   "hash": item_hash

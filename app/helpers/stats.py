@@ -1,9 +1,7 @@
 """ Stats helper. """
 
-def get_stats(calcs, stats, result):
+def calculate_stats(count, stats):
     """ Get stats. """
-    stats = stats.get_stats()
-    count = calcs.get_calcs_count_by_result(result)
     ratio = count / stats['successful']
     return {
         "count": count,
