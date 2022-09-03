@@ -26,7 +26,7 @@ Microservice to get the smallest positive integer not in array and retrieve stat
 ## Demo
 
 - <https://kuriboh.pejedev.xyz/api/smallest>
-- <https://kuriboh.pejedev.xyz/api/stats>
+- <https://kuriboh.pejedev.xyz/api/stats/5>
 - <https://kuriboh.pejedev.xyz/api/health>
 
 ## Run Locally
