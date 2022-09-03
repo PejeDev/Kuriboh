@@ -8,6 +8,7 @@ from app.handlers.routes import configure_routes
 
 database = create_mongo_fixture()
 
+
 def test_route_configuration():
     """ Test the route configuration. """
     server = Flask(__name__)
@@ -25,8 +26,11 @@ def test_health_route():
     response = client.get(url)
     assert response.status_code == 200
 
+# pylint: disable=unused-argument
 @patch('app.models.calc.Calc.add')
-def test_get_smallest_positive_interger_route(_):
+@patch('app.models.stats.Stats.increase_successful')
+@patch('app.models.stats.Stats.increase_failed')
+def test_get_smallest_positive_interger_route(_, increase_successful, increase_failed):
     """ Test the get_smallest_positive_interger route. """
     client = app.test_client()
     url = '/api/smallest'

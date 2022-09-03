@@ -5,9 +5,11 @@ from jsonschema import ValidationError
 
 from app.helpers.calc import get_smallest_positive_integer_not_in_list
 from app.models.calc import Calc
+from app.models.stats import Stats
 from app.config import app_config
 
 calc = Calc(app_config['db']['uri'], app_config['db']['name'])
+stats = Stats(app_config['db']['uri'], app_config['db']['name'])
 
 def configure_routes(app):
     """ Configures the routes for the application. """
@@ -44,6 +46,7 @@ def configure_routes(app):
             'result': result,
             'hash': calc_hash
         })
+        stats.increase_successful(amount=1)
         return jsonify({
             'result': result
         }), 200
@@ -56,6 +59,7 @@ def configure_routes(app):
     @app.errorhandler(400)
     def bad_request(error):
         """ Bad request error handler. """
+        stats.increase_failed(amount=1)
         if isinstance(error.description, ValidationError):
             original_error = error.description
             return make_response(jsonify({'error': original_error.message}), 401)
