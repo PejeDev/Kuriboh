@@ -3,9 +3,8 @@ from app.helpers.stats import calculate_stats
 
 def test_calculate_stats():
     """ Test the calculate_statsmethod. """
-    stats = {
-        "successful": 1,
-        "failed": 0,
-        "total": 1
-    }
-    assert calculate_stats(100, stats) is not None
+    result_count = 50
+    assert calculate_stats(result_count, 100) is not None
+    assert calculate_stats(result_count, 100)["total"] == 100
+    assert calculate_stats(result_count, 100)["count"] == result_count
+    assert calculate_stats(result_count, 100)["ratio"] == 0.5

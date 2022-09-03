@@ -26,10 +26,14 @@ class Database:
             filter=None, projection=None, limit=0, sort=False)
         return list(found)
 
-    def count_by_param(self, collection_name, param, num):
+    def count_by_param(self, collection_name, param, param_value):
         """ Count elements in collection """
-        criteria = { param: num }
+        criteria = { param: param_value }
         return self.database[collection_name].count_documents(criteria)
+
+    def count_total(self, collection_name):
+        """ Count elements in collection """
+        return self.database[collection_name].count_documents()
 
     def find_by_property(self, prop, prop_value, collection_name):
         """ Find element by id """

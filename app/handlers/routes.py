@@ -34,9 +34,8 @@ def configure_routes(app):
     @app.route('/api/health', methods=['GET'])
     def get_health():
         """ Health check endpoint. """
-        return jsonify({
-            'status': 'ok'
-        }), 200
+        stats_obj = stats.get_stats()
+        return jsonify(stats_obj), 200
 
     @app.route('/api/smallest', methods=['POST'])
     @expects_json(schema)
@@ -61,12 +60,13 @@ def configure_routes(app):
         """ Stats endpoint. """
         validator.validate_type(number, "integer")
 
-        stats_obj = stats.get_stats()
-        count = calcs.get_calcs_count_by_result(int(number))
-        json = calculate_stats(count, stats_obj)
+        total_count = calcs.get_calcs_count()
+        num_count = calcs.get_calcs_count_by_result(int(number))
+        json = calculate_stats(num_count, total_count)
         return  jsonify(json), 200
 
     @app.errorhandler(400)
+    @app.errorhandler(500)
     def bad_request(error):
         """ Bad request error handler. """
         stats.increase_failed(amount=1)

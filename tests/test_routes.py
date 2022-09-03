@@ -1,14 +1,13 @@
 """ Tests for the app routes. """
 from unittest.mock import patch
 from flask import Flask
-from pytest_mock_resources import create_mongo_fixture
 
 from app.server import app
 from app.handlers.routes import configure_routes
 
-database = create_mongo_fixture()
-
-def test_route_configuration():
+@patch('app.models.stats.Stats.get_stats',
+return_value={ 'successful': 1, 'failed': 0, 'total': 1 })
+def test_route_configuration(_):
     """ Test the route configuration. """
     server = Flask(__name__)
     configure_routes(server)
@@ -17,13 +16,15 @@ def test_route_configuration():
     response = client.get(url)
     assert response.status_code == 200
 
-
-def test_health_route():
+@patch('app.models.stats.Stats.get_stats',
+return_value={ 'successful': 1, 'failed': 0, 'total': 1 })
+def test_health_route(_):
     """ Test the api health route. """
     client = app.test_client()
     url = '/api/health'
     response = client.get(url)
     assert response.status_code == 200
+    assert response.json == { 'successful': 1, 'failed': 0, 'total': 1 }
 
 # pylint: disable=unused-argument
 @patch('app.models.calc.Calc.add')

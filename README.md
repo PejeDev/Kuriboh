@@ -5,7 +5,6 @@
 [![Codecov](https://codecov.io/gh/PejeDev/Kuriboh/branch/main/graph/badge.svg?token=7J8VV3SOAW)](https://codecov.io/gh/PejeDev/Kuriboh)
 ![CI workflow](https://github.com/PejeDev/Kuriboh/actions/workflows/ci-release.yml/badge.svg)
 
-
 Microservice to get the smallest positive integer not in array and retrieve statistics.
 
 ## Tech Stack
@@ -64,7 +63,6 @@ Start the server
 {
   "array": [1, 3, 6, 4, 1, 2]
 }
-
 ```
 
 #### Response
@@ -115,9 +113,17 @@ Start the server
 
 ```json
 {
-  "status": "ok"
+  "successful": 1,
+  "failed": 0,
+  "total": 1
 }
 ```
+
+| Property     | Type  | Description                   |
+| :----------- | :---- | :---------------------------- |
+| `successful` | `int` | Count of successful requests. |
+| `failed`     | `int` | Count of failed requests.     |
+| `total`      | `int` | Count of total requests.      |
 
 ## Authors
 
