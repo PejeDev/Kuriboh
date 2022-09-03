@@ -2,7 +2,7 @@ version: '3.8'
 services:
    app:
      build: .
-     command: python -u run.py
+     command: python -u wsgi.py
      ports:
        - "5555:5555"
      volumes:
@@ -11,6 +11,8 @@ services:
        - db
    db:
      image: mongo:latest
+     ports:
+      - "27017:27017"
      hostname: test_mongodb
      environment:
         - MONGO_INITDB_DATABASE=kuriboh

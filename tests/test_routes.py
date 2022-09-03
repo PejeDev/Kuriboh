@@ -1,8 +1,12 @@
 """ Tests for the app routes. """
+from unittest.mock import patch
 from flask import Flask
+from pytest_mock_resources import create_mongo_fixture
+
 from app.server import app
 from app.handlers.routes import configure_routes
 
+database = create_mongo_fixture()
 
 def test_route_configuration():
     """ Test the route configuration. """
@@ -21,8 +25,8 @@ def test_health_route():
     response = client.get(url)
     assert response.status_code == 200
 
-
-def test_get_smallest_positive_interger_route():
+@patch('app.models.calc.Calc.add')
+def test_get_smallest_positive_interger_route(_):
     """ Test the get_smallest_positive_interger route. """
     client = app.test_client()
     url = '/api/smallest'
