@@ -7,7 +7,7 @@ from app.helpers.stats import get_stats
 
 calc = Calc("test", "mongodb://localhost",
             client=mongomock.MongoClient)
-	
+
 stats = Stats("test", "mongodb://localhost",
               client=mongomock.MongoClient)
 
