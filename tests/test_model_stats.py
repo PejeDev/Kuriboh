@@ -23,7 +23,7 @@ def test_increase_failed():
 
 def test_delete_stats():
     """ Test the delete method. """
-    found = stats_model.get_stats()
+    found = stats_model.database.find_first(collection_name="stats")
     assert stats_model.delete(found["_id"]) is True
 
 def test_get_stats():
