@@ -33,7 +33,7 @@ class Database:
 
     def count_total(self, collection_name):
         """ Count elements in collection """
-        return self.database[collection_name].count_documents()
+        return self.database[collection_name].count_documents({})
 
     def find_by_property(self, prop, prop_value, collection_name):
         """ Find element by id """
