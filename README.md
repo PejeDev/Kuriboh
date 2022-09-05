@@ -115,15 +115,19 @@ Start the server
 {
   "successful": 1,
   "failed": 0,
-  "total": 1
+  "total": 1,
+  "created": "Sat, 03 Sep 2022 06:13:45 GMT",
+  "updated": "Sat, 03 Sep 2022 06:13:45 GMT"
 }
 ```
 
-| Property     | Type  | Description                   |
-| :----------- | :---- | :---------------------------- |
-| `successful` | `int` | Count of successful requests. |
-| `failed`     | `int` | Count of failed requests.     |
-| `total`      | `int` | Count of total requests.      |
+| Property     | Type  | Description                    |
+| :----------- | :---- | :----------------------------- |
+| `successful` | `int` | Count of successful requests.  |
+| `failed`     | `int` | Count of failed requests.      |
+| `total`      | `int` | Count of total requests.       |
+| `created`    | `str` | Server stats creation date.    |
+| `updated`    | `str` | Server stats last update date. |
 
 ## Authors
 
