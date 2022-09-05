@@ -51,6 +51,7 @@ class Stats():
         stats = self.database.find_first(self.collection_name)
         if not stats:
             return {"total": 0, "successful": 0, "failed": 0}
+        del stats["_id"]
         return stats
 
     def _add(self, stats):
